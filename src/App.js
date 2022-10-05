@@ -1,8 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import UserProfile from './UserProfile';
-import PostList from './PostList';
 import UserNav from './UserNav';
+import User from './User';
 
 function App() {
 
@@ -12,11 +11,8 @@ function App() {
         <Route path='/' exact>
           <UserNav />
         </Route>
-        <Route path='/users/:userId' exact>
-          <UserProfile />
-        </Route>
-        <Route path='/users/:userId/posts'>
-          <PostList />
+        <Route path='/users/:userId'>
+          <User />
         </Route>
       </Switch>
     </div>

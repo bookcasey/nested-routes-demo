@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function PostList() {
+function PostList({ user }) {
   const [posts, setPosts] = useState([]);
   const { userId } = useParams()
 
@@ -16,14 +16,11 @@ function PostList() {
 
   return (
     <>
-      <Link to='/'>Home</Link>
-      {/* TODO: fix these links! */}
-      {/* <Link to={`/users/${user.id}`}>Profile</Link>
-      <Link to={`/users/${user.id}/posts`}>Posts</Link> */}
+      <h2>{user.name}</h2>
 
-      <ul>
-        {posts.map(post => <li>{post.title}</li>)}
-      </ul>
+      <ol>
+        {posts.map(post => <li key={post.id}>{post.title}</li>)}
+      </ol>
     </>
   )
 }
