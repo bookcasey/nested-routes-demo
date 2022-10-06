@@ -10,12 +10,18 @@ function User() {
   const { userId } = params;
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function getUser() {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
+        signal: abortController.signal,
+      });
       const data = await response.json();
       setUser(data);
     }
     getUser();
+
+    return () => abortController.abort();
   }, [userId]);
 
   return (
